@@ -439,6 +439,77 @@ function handleSubmit(e) {
   console.log('Submitted email:', email);
   emailInput.value = '';
 }
+window.addEventListener('scroll', () => {
+  const steps = document.querySelectorAll('.how-it-works .step');
+
+  steps.forEach(step => {
+      const speed = step.getAttribute('data-speed'); 
+      const top = step.getBoundingClientRect().top;
+
+      if (top < window.innerHeight && top > -step.offsetHeight) { 
+          step.style.transform = `translateY(${top * speed * 0.1}px)`; 
+      }
+  });
+});
 
 // Call previewGame when the game loads
 window.onload = previewGame;
+
+const typingText = document.getElementById('typing-text');
+const questions = [
+  "Ever feel overwhelmed by too many tasks and too little time?",
+  "Are deadlines stressing you out?",
+  "Don't you wish you had more time?",
+  "Wish you had a reliable helping hand?",
+  "Need help but don’t know where to find it quickly?"
+];
+let questionIndex = 0;
+let charIndex = 0;
+let isDeleting = false;
+
+function type() {
+  const currentQuestion = questions[questionIndex];
+
+  if (isDeleting) {
+    typingText.textContent = currentQuestion.substring(0, charIndex - 1);
+    charIndex--;
+
+    if (charIndex === 0) {
+      isDeleting = false;
+      questionIndex = (questionIndex + 1) % questions.length; 
+      setTimeout(type, 1000); // Pause after deleting
+    } else {
+      setTimeout(type, 50); // Typing speed (delete)
+    }
+
+  } else {
+    typingText.textContent = currentQuestion.substring(0, charIndex + 1);
+    charIndex++;
+
+    if (charIndex === currentQuestion.length) {
+      isDeleting = true;
+      setTimeout(type, 2000); // Pause before deleting
+    } else {
+      setTimeout(type, 100); // Typing speed (write)
+    }
+  }
+}
+
+type(); // Start the typing effect
+
+const tabs = document.querySelectorAll('.tab');
+const tabContents = document.querySelectorAll('.tab-content');
+
+tabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    const target = tab.dataset.target;
+
+    // Remove active class from all tabs and hide content
+    tabs.forEach(t => t.classList.remove('active'));
+    tabContents.forEach(tc => tc.style.display = 'none');
+
+    // Add active class to clicked tab and show corresponding content
+    tab.classList.add('active');
+    document.getElementById(target).style.display = 'block';
+  });
+});
