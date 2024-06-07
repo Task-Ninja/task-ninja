@@ -371,6 +371,29 @@ nav {
   height: 100%;
   object-fit: cover; 
 }
+.demo-video {
+  padding: 0px 0 80px 0; /* Adjust padding as needed */
+  text-align: center; /* Center the video container */
+}
+
+
+
+.demo-video .hero-video-container { 
+  /* Keep the existing styles for responsive video from previous responses */
+  position: relative; /* Relative positioning for centering */
+  width: 100%;
+  padding-bottom: 56.25%; /* Aspect ratio 16:9 */
+  height: 0;
+  overflow: hidden;
+}
+
+.demo-video .hero-video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
 
 /* Game section styles */
 .game-section {
@@ -803,7 +826,6 @@ nav {
   background-color: #ff6600;
   border-radius: 50%;
 }
-
 .professional-benefits {
   display: grid;
   grid-template-columns: repeat(1, 1fr);
@@ -1240,29 +1262,18 @@ footer {
   .social-icons {
   margin-top: 20px;
   }
+  .professional-benefits {
+    overflow-x: auto; /* Allow horizontal scrolling if needed */
   }
 
-  .demo-video {
-    padding: 0px 0 80px 0; /* Adjust padding as needed */
-    text-align: center; /* Center the video container */
+  .benefit {
+    flex: 0 0 auto; /* Prevent cards from shrinking too much */
+    min-width: 250px; /* Set a minimum width for better visibility */
+  }
+  #game-section { /* Target the game section using the ID */
+    display: none;
   }
   
-  
-  
-  .demo-video .hero-video-container { 
-    /* Keep the existing styles for responsive video from previous responses */
-    position: relative; /* Relative positioning for centering */
-    width: 100%;
-    padding-bottom: 56.25%; /* Aspect ratio 16:9 */
-    height: 0;
-    overflow: hidden;
   }
-  
-  .demo-video .hero-video-container iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  }
+
   
